@@ -9,7 +9,7 @@ with open("knowledge_base.json", "r") as f:
 
 # --- Telegram setup ---
 TELEGRAM_TOKEN = os.getenv("7441762426:AAG6CTvPAFFV-dRbtjXSNT6OLAKcbjwPzGU")
-TELEGRAM_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
+TELEGRAM_URL = f"https://api.telegram.org/bot{7441762426:AAG6CTvPAFFV-dRbtjXSNT6OLAKcbjwPzGU}"
 
 # --- Function to handle queries ---
 def handle_query(query):
@@ -38,4 +38,4 @@ def chat():
     return jsonify({"reply": handle_query(msg)})
 
 if __name__== "__main__":
-    app.run(port=5000)
+    app.run( host="0.0.0.0.",port=5000)
