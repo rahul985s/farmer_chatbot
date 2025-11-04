@@ -9,7 +9,7 @@ with open("knowledge_base.json", "r") as f:
 
 # --- Telegram setup ---
 TELEGRAM_TOKEN = os.getenv("7441762426:AAG6CTvPAFFV-dRbtjXSNT6OLAKcbjwPzGU")
-TELEGRAM_URL = f"https://api.telegram.org/bot{7441762426:AAG6CTvPAFFV-dRbtjXSNT6OLAKcbjwPzGU}"
+TELEGRAM_URL = "https://api.telegram.org/bot{7441762426:AAG6CTvPAFFV-dRbtjXSNT6OLAKcbjwPzGU}"
 
 # --- Function to handle queries ---
 def handle_query(query):
