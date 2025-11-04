@@ -13,29 +13,27 @@ TELEGRAM_URL = "https://api.telegram.org/bot{7441762426:AAG6CTvPAFFV-dRbtjXSNT6O
 
 # --- Function to handle queries ---
 def handle_query(query):
-    query = query.lower()
-    for key, value in KNOWLEDGE_BASE.items():
-        if key in query:
-            return value
-    return "Sorry, I don't have info on that yet. Try asking about irrigation, soil, pests, or fertilizer."
-
+    ...
+    return "some reply"
 # --- Telegram webhook route ---
 @app.route("/telegram_webhook", methods=["POST"])
 def telegram_webhook():
     data = request.get_json()
     if not data or "message" not in data:
-        return "ok"
+        return jsonify({"status":"ignored"}),200
     chat_id = data["message"]["chat"]["id"]
     text = data["message"].get("text", "")
     reply = handle_query(text)
-    requests.post(f"{TELEGRAM_URL}/sendMessage", json={"chat_id": chat_id, "text": reply})
-    return "ok"
+
+   response= requests.post(f"{TELEGRAM_URL}/sendMessage", json={"chat_id": chat_id, "text": reply})
+    print("Telegram sendMessage response:",response.text)
+return jsonify({"status":"ok"},200)
 
 # --- Local test route (for testing without Telegram) ---
 @app.route("/chat", methods=["POST"])
 def chat():
     msg = request.json.get("message", "")
     return jsonify({"reply": handle_query(msg)})
-
-if __name__== "__main__":
-    app.run( host="0.0.0.0",port=5000)
+if __name__== "_main_":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
